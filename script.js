@@ -10,8 +10,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 var Ricon = L.icon({
   iconUrl: 'images/ricon.png',
   iconSize: [36, 41], //size of the icon (literally length width)
-  iconAnchor: [19, 38], //anchor point of the icon (idk what this means tbh, but the icons move with zoom if changed)
-  popupAnchor: [0, 0] // Point from which the popup should open relative to the iconAnchor (idk this either)
+  iconAnchor: [19, 38], //anchor point of the icon
+  popupAnchor: [0, 0] // Point from which the popup should open relative to the iconAnchor 
 })
 
 var Ricon_Half = L.icon({
@@ -139,6 +139,7 @@ map.addLayer(jackson); //printing the cluster on the map
 //Leaflet.markercluster
 //OverlappingMarkerSpiderfier-Leaflet
 
+//empire✅
 //vida ✅
 //tomah ✅ 
 //burrito bandidos✅
