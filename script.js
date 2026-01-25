@@ -39,15 +39,13 @@ var customOptions =
 //var name = L.marker([coord], {icon: Ricon});
 //name.bindPopup("name"); 
 
+
 var the_legend = L.marker([0, 0], {icon: legend_icon}).addTo(map);
 the_legend.bindPopup("Example Marker Test");
 
 var McMaster = L.marker([43.26369, -79.91768]).addTo(map);
 McMaster.bindPopup("<b>McMaster</b>");
 //ok below is where we add the restaurant markers
-
-var Empire_B = L.marker([43.25932092057482, -79.87814554765637], {icon: Ricon}); //kingst 📕 
-Empire_B.bindPopup("Empire Burger", customOptions); //kingst
 
 var Vida = L.marker([43.2583587645654, -79.87623152127732], {icon: Ricon}); //📕
 Vida.bindPopup("Vida La Pita", customOptions); //kingst
@@ -124,7 +122,7 @@ Lazeez.bindPopup("Lazeez Shawarma", customOptions);
 var kingst = L.markerClusterGroup({
   maxClusterRadius: 12.3 //adjust, amount of zoom needed to cluster icons
 });                   // (lower num means markers cluster at a higher zoom)
-var kingstArray = [Empire_B, Vida, Burrito_Band, Tomah, Tondou]; //adding all the places in an array
+var kingstArray = [Vida, Burrito_Band, Tomah, Tondou]; //adding all the places in an array
 var kingstLayerGroup = L.layerGroup(kingstArray); //putting that array in a layer group
 kingst.addLayer(kingstLayerGroup); //adding the layer to our cluster
 map.addLayer(kingst); //printing the cluster on the map
@@ -141,7 +139,6 @@ map.addLayer(jackson); //printing the cluster on the map
 //Leaflet.markercluster
 //OverlappingMarkerSpiderfier-Leaflet
 
-//empire✅
 //vida ✅
 //tomah ✅ 
 //burrito bandidos✅
@@ -196,11 +193,6 @@ function addCustomControl(){ ///////////////////////////////////////////////////
       var div = L.DomUtil.create('div', 'toggleable-list');
       div.innerHTML = `
           <h4>Restaurants</h4>
-
-          <div>
-            <input type="checkbox" id="toggleEmpire" checked> Empire Burger<br>
-            <button class="center-button" onclick="centerMap(Empire_B)">O</button>
-          </div>
 
           <div>
             <input type="checkbox" id="toggleVida" checked> Vida La Pita<br>
@@ -318,19 +310,12 @@ function addCustomControl(){ ///////////////////////////////////////////////////
   customControl.addTo(map);
 
   //adding ALL the event listeners for toggling markers ////////////////////////////////////////////////////////////////////
-  document.getElementById('toggleEmpire').addEventListener('change', function(e) {
-      if (e.target.checked) {
-        kingst.addLayer(Empire_B); // <--
-      } else {
-        kingst.removeLayer(Empire_B); // <-- notice for cluster groups u gotta remove and add the right layers
-      }
-  });
 
   document.getElementById('toggleVida').addEventListener('change', function(e) {
       if (e.target.checked) {
-        kingst.addLayer(Vida);
+        kingst.addLayer(Vida); // <--
       } else {
-        kingst.removeLayer(Vida);
+        kingst.removeLayer(Vida);// <-- notice for cluster groups u gotta remove and add the right layers
       }
   });
 
