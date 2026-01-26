@@ -62,8 +62,10 @@
   
   .sidebar {
     width: 150px;             /* Set sidebar width */
+    width: min(80vw, 320px);
     max-height: 80vh;         /* Max height relative to viewport */
     overflow-y: auto;         /* Enable vertical scrolling */
+    -webkit-overflow-scrolling: touch; /* for phone scrolling /* 
     background-color: white;  /* Optional styling */
     padding: 10px;
     border-radius: 6px;
