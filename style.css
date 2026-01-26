@@ -60,5 +60,35 @@
       position: relative;
   }
   
+  .sidebar {
+    width: 150px;             /* Set sidebar width */
+    max-height: 80vh;         /* Max height relative to viewport */
+    overflow-y: auto;         /* Enable vertical scrolling */
+    background-color: white;  /* Optional styling */
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+    font-family: sans-serif;
+}
+
+.restaurant-item {
+    margin-bottom: 20px;
+}
   
-  
+
+.restaurant-row {
+  padding: 10px;
+  margin-bottom: 4px;
+
+  cursor: pointer;
+  border-radius: 6px;
+
+  font-size: 14px;
+  background-color: white;
+}
+
+.restaurant-row:hover {
+  background-color: #f2f2f2;
+}
+
+
