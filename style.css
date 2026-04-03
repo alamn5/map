@@ -69,7 +69,12 @@
     border-radius: 6px;
     box-shadow: 0 0 6px rgba(0,0,0,0.3);
     font-family: sans-serif;
-}
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar.hidden {
+  transform: translateX(-100%);
+  }
 
 .restaurant-item {
     margin-bottom: 20px;
@@ -91,4 +96,27 @@
   background-color: #f2f2f2;
 }
 
+
+.info-panel {
+  position: fixed;
+  left: 20px;
+  top: 98px;
+
+  width: 155px;
+  height: 85vh;              /* use viewport height for reliability */
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+  
+  font-family: sans-serif;
+  overflow-y: auto;          /* IMPORTANT */
+  overflow-x: hidden;
+  box-sizing: border-box;    /* IMPORTANT (fixes scroll issues) */
+  z-index: 1000;
+}
+
+.hidden {
+  display: none;
+}
 

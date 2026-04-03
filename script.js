@@ -45,7 +45,7 @@ const restaurants = [
     coords: [43.2583587645654, -79.87623152127732],
     icon: "Ricon",
     cluster: "kingst",
-    zoom: 17
+    zoom: 17,
   },
 
   {
@@ -65,7 +65,7 @@ const restaurants = [
   {
     name: "Tondou",
     coords: [43.25880871087903, -79.87628162773483],
-    icon: "Ricon_Half",
+    icon: "Ricon",
     cluster: "kingst"
   },
 
@@ -107,14 +107,14 @@ const restaurants = [
   {
     name: "Kenzo",
     coords: [43.256575564140306, -79.86828623391892],
-    icon: "Ricon_Half",
+    icon: "Ricon",
     cluster: "jackson"
   },
 
   {
     name: "TeaHut",
     coords: [43.25418258194645, -79.86523511704918],
-    icon: "Ricon_Half",
+    icon: "Ricon",
     cluster: null
   },
 
@@ -142,7 +142,7 @@ const restaurants = [
   {
     name: "Lava Pizza",
     coords: [43.2633162978512, -79.90084302405585],
-    icon: "Ricon_Half",
+    icon: "Ricon",
     cluster: null
   },
 
@@ -163,21 +163,21 @@ const restaurants = [
   {
     name: "August 8",
     coords: [43.25933213450475, -79.86673461116884],
-    icon: "Ricon_Half",
+    icon: "Ricon",
     cluster: null
   },
 
   {
     name: "Sapporo",
     coords: [43.25407606492277, -79.8662195970458],
-    icon: "Ricon_Half",
+    icon: "Ricon",
     cluster: null
   },
 
   {
     name: "Cowabunga",
     coords: [43.260004855888965, -79.86803795436835],
-    icon: "Ricon_Half",
+    icon: "Ricon",
     cluster: null
   },
 
@@ -191,14 +191,14 @@ const restaurants = [
   {
     name: "Pancake House",
     coords: [43.25782023508247, -79.92340730344885],
-    icon: "Ricon_Half",
+    icon: "Ricon",
     cluster: null
   },
 
   {
     name: "Mandarin",
     coords: [43.20603535062695, -79.89324189614968],
-    icon: "Ricon_Half",
+    icon: "Ricon",
     cluster: null,
     zoom: 13
   },
@@ -239,7 +239,8 @@ var jackson = L.markerClusterGroup({ maxClusterRadius: 25 });
 
 restaurants.forEach(r => {
     const icon = r.icon === "Ricon" ? Ricon : Ricon_Half;
-    const marker = L.marker(r.coords, { icon: icon }).bindPopup(r.name, customOptions);
+    const marker = L.marker(r.coords, { icon: icon }).bindPopup(r.name, customOptions).on('click', () => openPanel(r));;
+    //marker line has alot, we binded the popup and also the panel with info on it
     r.marker = marker;
 
     //add markers to the cluster, or map directly if individual
@@ -313,6 +314,7 @@ function addCustomControl(){
 
         row.addEventListener('click', () => {
           centerMap(r.marker, r.zoom);
+          openPanel(r);
         });
         //now if its clicked on, we go to it (using our centerMap func)
 
@@ -335,7 +337,7 @@ addCustomControl();
 
 
 /////////////////////////// this func that lets us zoom in on each restaurant when clicked ///////////////////////////
-function centerMap(marker, zoom = 17) {
+function centerMap(marker, zoom = 15) {
   map.setView(marker.getLatLng(), zoom);
   marker.openPopup();
 }
@@ -366,5 +368,26 @@ function restaurantListGenerate(){
 }
 
 ///////////////////////////
-//function openRestaurant(){
-//}
+
+function openPanel(restaurant) {
+  const panel = document.getElementById("infoPanel");
+  const content = document.getElementById("infoContent");
+  document.querySelector('.sidebar').classList.add('hidden'); //when panel is open, hide the restaurant list
+  document.getElementById('infoPanel').classList.add('show');
+
+  //this is sectioning for the review section
+  content.innerHTML = `
+    <h2>${restaurant.name}</h2>
+    <p>Synopsis: ${restaurant.synopsis || "TBD"}</p>
+    <p>Recommendation: ${restaurant.reccomendations || "TBD"}</p>
+  `;
+
+  panel.classList.remove("hidden");
+}
+
+function closePanel() {
+  document.getElementById("infoPanel").classList.add("hidden");
+  document.querySelector('.sidebar').classList.remove('hidden'); //when panel is closed, show the restaurant list again
+}
+
+///////////////////////////

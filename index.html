@@ -20,6 +20,14 @@
 <body>
 
     <div id="map"></div>
+
+    <!--info panel when u click a restaurant-->
+    <div id="infoPanel" class="info-panel hidden">
+        <button onclick="closePanel()"> Back To List | ✖</button>
+        
+        <div id="infoContent"></div>
+    </div>
+
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
             crossorigin=""></script>
